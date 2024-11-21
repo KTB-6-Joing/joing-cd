@@ -21,7 +21,7 @@ spec:
         app: backend
     spec:
       containers:
-        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo:v0.0.24
+        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo:v0.0.1
           name: joing-backend-repo
           resources:
             requests:
