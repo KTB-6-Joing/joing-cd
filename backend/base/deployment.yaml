@@ -21,8 +21,11 @@ spec:
         app: backend
     spec:
       containers:
-        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo:v0.0.1
+        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo:v0.0.24
           name: joing-backend-repo
+          env:
+            - name: APP_PHASE
+              value: dev
           resources:
             requests:
               cpu: 250m

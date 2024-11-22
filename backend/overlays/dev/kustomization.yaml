@@ -7,3 +7,10 @@ resources:
 images:
   - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo
     newTag: v0.0.24
+
+patches:
+  - target:
+      kind: Deployment
+      name: backend
+      namespace: prod
+    path: ./env-patch.yaml
