@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ai
+  name: ai
+  namespace: prod
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ai
+  template:
+    metadata:
+      labels:
+        app: ai
+    spec:
+      containers:
+        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-ai-repo:v0.1.71
+          name: joing-ai-repo
+          resources:
+            requests:
+              cpu: 1
+              memory: 1.5Gi
+            limits:
+              cpu: 1.5
+              memory: 1.5Gi
+          ports:
+            - containerPort: 8000
+              name: app
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            failureThreshold: 1
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          volumeMounts:
+            - name: aws-config
+              mountPath: /root/.aws/config
+              subPath: config
+            - name: aws-credentials
+              mountPath: /root/.aws/credentials
+              subPath: credentials
+      volumes:
+        - name: aws-config
+          secret:
+            secretName: aws-config
+        - name: aws-credentials
+          secret:
+            secretName: aws-credentials
