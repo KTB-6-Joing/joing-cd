@@ -13,4 +13,4 @@ spec:
           name: joing-backend-repo
           env:
             - name: APP_PHASE
-              value: dev
+              value: prod

@@ -25,7 +25,7 @@ spec:
           name: joing-backend-repo
           env:
             - name: APP_PHASE
-              value: prod
+              value: dev
           resources:
             requests:
               cpu: 300m
