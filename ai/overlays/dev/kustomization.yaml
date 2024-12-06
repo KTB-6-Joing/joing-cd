@@ -5,5 +5,5 @@ resources:
   - ../../base
 
 images:
-  - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-ai-repo
-    newTag: v0.1.71
+  - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo
+    newTag: v0.1.76
