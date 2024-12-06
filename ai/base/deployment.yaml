@@ -9,7 +9,7 @@ spec:
   replicas: 2
   strategy:
     rollingUpdate:
-      maxSurge: 50%
+      maxSurge: 1
       maxUnavailable: 50%
     type: RollingUpdate
   selector:
@@ -20,6 +20,16 @@ spec:
       labels:
         app: ai
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: node-type
+                    operator: In
+                    values:
+                      - ondemand
       containers:
         - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-ai-repo:v0.1.71
           name: joing-ai-repo
