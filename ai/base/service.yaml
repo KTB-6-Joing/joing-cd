@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: ai
-  name: ai-svc
+    app: rec-ai
+  name: rec-ai-svc
   namespace: prod
 spec:
   ports:
@@ -16,5 +16,26 @@ spec:
       port: 443
       targetPort: 8000
   selector:
-    app: ai
+    app: rec-ai
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gen-ai
+  name: gen-ai-svc
+  namespace: prod
+spec:
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 8000
+    - protocol: TCP
+      name: https
+      port: 443
+      targetPort: 8000
+  selector:
+    app: gen-ai
   type: NodePort

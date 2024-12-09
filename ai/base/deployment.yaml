@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: ai
-  name: ai
+    app: rec-ai
+  name: rec-ai
   namespace: prod
 spec:
   replicas: 1
@@ -14,11 +14,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: ai
+      app: rec-ai
   template:
     metadata:
       labels:
-        app: ai
+        app: rec-ai
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +32,7 @@ spec:
                       - ondemand
       containers:
         - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo:v0.1.71
-          name: joing-ai-repo
+          name: joing-rec-ai
           resources:
             requests:
               cpu: 1
@@ -40,6 +40,78 @@ spec:
             limits:
               cpu: 1.2
               memory: 1.5Gi
+          ports:
+            - containerPort: 8000
+              name: app
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            failureThreshold: 1
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          volumeMounts:
+            - name: aws-config
+              mountPath: /root/.aws/config
+              subPath: config
+            - name: aws-credentials
+              mountPath: /root/.aws/credentials
+              subPath: credentials
+      volumes:
+        - name: aws-config
+          secret:
+            secretName: aws-config
+        - name: aws-credentials
+          secret:
+            secretName: aws-credentials
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gen-ai
+  name: gen-ai
+  namespace: prod
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 50%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: gen-ai
+  template:
+    metadata:
+      labels:
+        app: gen-ai
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: node-type
+                    operator: In
+                    values:
+                      - ondemand
+      containers:
+        - image: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-genai-repo:v0.0.4
+          name: joing-gen-ai
+          resources:
+            requests:
+              cpu: 200m
+              memory: 500Mi
+            limits:
+              cpu: 300m
+              memory: 500Mi
           ports:
             - containerPort: 8000
               name: app

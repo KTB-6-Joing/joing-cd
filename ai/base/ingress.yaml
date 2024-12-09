@@ -16,10 +16,24 @@ spec:
     - host: joing-ai.o-r.kr
       http:
         paths:
-          - path: /
+          - path: /gen
             pathType: Prefix
             backend:
               service:
-                name: ai-svc
+                name: gen-ai-svc
+                port:
+                  name: https
+          - path: /rec
+            pathType: Prefix
+            backend:
+              service:
+                name: rec-ai-svc
+                port:
+                  name: https
+          - path: /ready
+            pathType: Prefix
+            backend:
+              service:
+                name: rec-ai-svc
                 port:
                   name: https
