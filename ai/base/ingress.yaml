@@ -37,3 +37,10 @@ spec:
                 name: rec-ai-svc
                 port:
                   name: https
+          - path: /docs
+            pathType: Prefix
+            backend:
+              service:
+                name: rec-ai-svc
+                port:
+                  name: https
