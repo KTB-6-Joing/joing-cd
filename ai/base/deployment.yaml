@@ -47,8 +47,9 @@ spec:
             httpGet:
               path: /ready
               port: 8000
+            initialDelaySeconds: 180
             failureThreshold: 1
-            periodSeconds: 180
+            periodSeconds: 60
           livenessProbe:
             httpGet:
               path: /ready
