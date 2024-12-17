@@ -47,14 +47,14 @@ spec:
             httpGet:
               path: /ready
               port: 8000
-            initialDelaySeconds: 480
+            initialDelaySeconds: 600
             failureThreshold: 1
             periodSeconds: 60
           livenessProbe:
             httpGet:
               path: /ready
               port: 8000
-            initialDelaySeconds: 480
+            initialDelaySeconds: 600
             periodSeconds: 60
           volumeMounts:
             - name: aws-config
