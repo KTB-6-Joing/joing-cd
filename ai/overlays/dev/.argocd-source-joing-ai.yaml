@@ -1,4 +1,4 @@
 kustomize:
   images:
-  - 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo:v0.1.103
+  - 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo:v0.1.104
   - 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-genai-repo:v0.0.13
