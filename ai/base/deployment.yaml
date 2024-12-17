@@ -48,7 +48,7 @@ spec:
               path: /ready
               port: 8000
             failureThreshold: 1
-            periodSeconds: 60
+            periodSeconds: 120
           livenessProbe:
             httpGet:
               path: /ready
@@ -108,10 +108,10 @@ spec:
           resources:
             requests:
               cpu: 200m
-              memory: 500Mi
+              memory: 512Mi
             limits:
               cpu: 300m
-              memory: 500Mi
+              memory: 512Mi
           ports:
             - containerPort: 8000
               name: app
