@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - ingress.yaml
 
 images:
   - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo
