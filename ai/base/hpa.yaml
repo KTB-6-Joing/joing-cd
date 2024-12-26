@@ -4,7 +4,7 @@ metadata:
   name: rec-ai
   namespace: prod
 spec:
-  maxReplicas: 1
+  maxReplicas: 3
   minReplicas: 1
   metrics:
     - resource:
@@ -30,7 +30,7 @@ metadata:
   name: gen-ai
   namespace: prod
 spec:
-  maxReplicas: 1
+  maxReplicas: 3
   minReplicas: 1
   metrics:
     - resource:

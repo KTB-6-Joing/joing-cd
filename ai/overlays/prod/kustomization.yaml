@@ -6,6 +6,6 @@ resources:
 
 images:
   - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-recai-repo
-    newTag: v0.1.76
+    newTag: v0.1.115
   - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-genai-repo
-    newTag: v0.0.4
+    newTag: v0.0.15

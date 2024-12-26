@@ -6,7 +6,7 @@ resources:
 
 images:
   - name: 054037113048.dkr.ecr.ap-northeast-2.amazonaws.com/joing-backend-repo
-    newTag: v0.0.24
+    newTag: v0.0.89
 
 patches:
   - target:

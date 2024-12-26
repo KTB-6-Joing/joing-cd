@@ -79,7 +79,7 @@ metadata:
   name: gen-ai
   namespace: prod
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
